@@ -1,6 +1,6 @@
-# Foo Resource Provider
+# Symbiosis Resource Provider
 
-The Foo Resource Provider lets you manage [Foo](http://example.com) resources.
+The Symbiosis Resource Provider lets you manage [Symbiosis](https://symbiosis.host) resources.
 
 ## Installing
 
@@ -11,13 +11,13 @@ This package is available for several languages/platforms:
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```bash
-npm install @pulumi/foo
+npm install @h4n/pulumi-symbiosis
 ```
 
 or `yarn`:
 
 ```bash
-yarn add @pulumi/foo
+yarn add @h4n/pulumi-symbiosis
 ```
 
 ### Python
@@ -25,7 +25,7 @@ yarn add @pulumi/foo
 To use from Python, install using `pip`:
 
 ```bash
-pip install pulumi_foo
+pip install pulumi_symbiosis
 ```
 
 ### Go
@@ -33,7 +33,7 @@ pip install pulumi_foo
 To use from Go, use `go get` to grab the latest version of the library:
 
 ```bash
-go get github.com/pulumi/pulumi-foo/sdk/go/...
+go get github.com/hbjydev/pulumi-symbiosis/sdk/go/...
 ```
 
 ### .NET
@@ -41,7 +41,7 @@ go get github.com/pulumi/pulumi-foo/sdk/go/...
 To use from .NET, install using `dotnet add package`:
 
 ```bash
-dotnet add package Pulumi.Foo
+dotnet add package HaydenYoung.Pulumi.Symbiosis
 ```
 
 ## Configuration
