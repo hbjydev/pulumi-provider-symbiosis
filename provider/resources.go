@@ -132,6 +132,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 
 		JavaScript: &tfbridge.JavaScriptInfo{
+            PackageName: "@h4n/pulumi-symbiosis",
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^3.0.0",
@@ -148,6 +149,7 @@ func Provider() tfbridge.ProviderInfo {
 
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
+            PackageName: "pulumi_symbiosis",
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
@@ -155,7 +157,7 @@ func Provider() tfbridge.ProviderInfo {
 
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", mainPkg),
+				fmt.Sprintf("github.com/hbjydev/pulumi-%[1]s/sdk/", mainPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,
@@ -164,6 +166,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 
 		CSharp: &tfbridge.CSharpInfo{
+            RootNamespace: "HaydenYoung.Pulumi",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
