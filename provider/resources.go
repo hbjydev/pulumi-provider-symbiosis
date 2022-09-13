@@ -18,10 +18,10 @@ import (
 	"fmt"
 	"path/filepath"
 
+	"github.com/hbjydev/pulumi-symbiosis/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/hbjydev/pulumi-symbiosis/provider/pkg/version"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/symbiosis-cloud/terraform-provider-symbiosis/symbiosis"
 )
@@ -50,38 +50,50 @@ func Provider() tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:    p,
+		P: p,
+
 		Name: "symbiosis",
+
 		// DisplayName is a way to be able to change the casing of the provider
 		// name when being displayed on the Pulumi registry
-		DisplayName: "",
+		DisplayName: "Symbiosis",
+
 		// The default publisher for all packages is Pulumi.
 		// Change this to your personal name (or a company name) that you
 		// would like to be shown in the Pulumi Registry if this package is published
 		// there.
-		Publisher: "Pulumi",
+		Publisher: "H4n.io",
+
 		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
 		// if this package is published there.
 		//
 		// You may host a logo on a domain you control or add an SVG logo for your package
 		// in your repository and use the raw content URL for that file as your logo URL.
 		LogoURL: "",
+
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
 		PluginDownloadURL: "",
-		Description:       "A Pulumi package for creating and managing symbiosis cloud resources.",
+
+		Description: "A Pulumi package for creating and managing symbiosis cloud resources.",
+
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
 		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
-		Keywords:   []string{"pulumi", "symbiosis", "category/cloud"},
-		License:    "Apache-2.0",
-		Homepage:   "https://www.pulumi.com",
+		Keywords: []string{"pulumi", "symbiosis", "category/cloud"},
+
+		License: "Apache-2.0",
+
+		Homepage: "https://www.pulumi.com",
+
 		Repository: "https://github.com/hbjydev/pulumi-symbiosis",
+
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
-		GitHubOrg: "",
-		Config:    map[string]*tfbridge.SchemaInfo{
+		GitHubOrg: "symbiosis-cloud",
+
+		Config: map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			// "region": {
@@ -91,8 +103,10 @@ func Provider() tfbridge.ProviderInfo {
 			// 	},
 			// },
 		},
+
 		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
+
+		Resources: map[string]*tfbridge.ResourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
@@ -105,12 +119,18 @@ func Provider() tfbridge.ProviderInfo {
 			// 		"tags": {Type: tfbridge.MakeType(mainPkg, "Tags")},
 			// 	},
 			// },
+			"symbiosis_cluster":                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Cluster")},
+			"symbiosis_cluster_service_account": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ClusterServiceAccount")},
+			"symbiosis_node_pool":               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "NodePool")},
+			"symbiosis_team_member":             {Tok: tfbridge.MakeResource(mainPkg, mainMod, "TeamMember")},
 		},
+
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi function. An example
 			// is below.
 			// "aws_ami": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAmi")},
 		},
+
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
@@ -125,12 +145,14 @@ func Provider() tfbridge.ProviderInfo {
 			// no overlay files.
 			//Overlay: &tfbridge.OverlayInfo{},
 		},
+
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
 		},
+
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
 				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", mainPkg),
@@ -140,6 +162,7 @@ func Provider() tfbridge.ProviderInfo {
 			),
 			GenerateResourceContainerTypes: true,
 		},
+
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
