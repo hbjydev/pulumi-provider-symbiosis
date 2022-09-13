@@ -52,7 +52,7 @@ func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
 		P: p,
 
-		Name: "symbiosis",
+		Name: "terraform-provider-symbiosis",
 
 		// DisplayName is a way to be able to change the casing of the provider
 		// name when being displayed on the Pulumi registry
@@ -74,7 +74,7 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "",
+        PluginDownloadURL: "",
 
 		Description: "A Pulumi package for creating and managing symbiosis cloud resources.",
 
@@ -85,7 +85,7 @@ func Provider() tfbridge.ProviderInfo {
 
 		License: "Apache-2.0",
 
-		Homepage: "https://www.pulumi.com",
+		Homepage: "https://symbiosis.host",
 
 		Repository: "https://github.com/hbjydev/pulumi-symbiosis",
 
@@ -132,15 +132,18 @@ func Provider() tfbridge.ProviderInfo {
 		},
 
 		JavaScript: &tfbridge.JavaScriptInfo{
-            PackageName: "@h4n/pulumi-symbiosis",
+            PackageName: "@h4n-io/pulumi-symbiosis",
+            
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^3.0.0",
 			},
+
 			DevDependencies: map[string]string{
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
+
 			// See the documentation for tfbridge.OverlayInfo for how to lay out this
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
@@ -166,7 +169,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 
 		CSharp: &tfbridge.CSharpInfo{
-            RootNamespace: "HaydenYoung.Pulumi",
+            RootNamespace: "HaydenYoung",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
